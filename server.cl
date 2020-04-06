@@ -3,16 +3,20 @@
 
 (require :usocket)
 
-;; bind socket
-(defparameter *sock* (usocket:socket-listen "127.0.0.1" 4123))
-
-;; listen to incoming connections
-(defparameter *sock-stream* (usocket:socket-accept *sock* :element-type 'character))
-  
-; open stream for communication
-(defparameter *my-stream* (usocket:socket-stream *sock-stream*))
+(defparameter *sock* nil)
+(defparameter *sock-stream* nil)
+(defparameter *my-stream* nil)
 
 (defun communi ()
+  ;; bind socket
+  (setf *sock* (usocket:socket-listen "127.0.0.1" 4123))
+
+  ;; listen to incoming connections
+  (setf *sock-stream* (usocket:socket-accept *sock* :element-type 'character))
+
+  ; open stream for communication
+  (setf *my-stream* (usocket:socket-stream *sock-stream*))
+
   ;; print message from client
   (format t "~a~%" (read *my-stream*))
   (force-output)

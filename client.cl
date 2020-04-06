@@ -9,13 +9,16 @@
 (setf (aref *darr* 7) "some")
 (setf (aref *darr* 9) 'some)
 
-;; bind socket
-(defparameter *sock* (usocket:socket-connect "localhost" 4123))
-
-;; open stream for communication
-(defparameter *my-stream* (usocket:socket-stream *sock*))
+(defparameter *sock* nil)
+(defparameter *my-stream* nil)
 
 (defun communi ()
+  ;; bind socket
+  (setf *sock* (usocket:socket-connect "localhost" 4123))
+
+  ;; open stream for communication
+  (setf *my-stream* (usocket:socket-stream *sock*))
+
   ;; send array to server
   (print *darr* *my-stream*)
   (force-output *my-stream*)
