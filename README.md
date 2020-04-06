@@ -46,6 +46,6 @@ Some additional problems I ran into were:
 
 - barely any examples or simple explanation out there
 
-- the few out there are either useless or don't work (properly), yet get copied and pasted on multiple pages and sites
+- the few out there are either useless or don't work (properly), yet get copied and pasted on multiple pages and sites. I ran into TWO examples. One of which only downloaded a website and even that with an error. The second was poorly written, had no error handling AND has sent only PART of the data in ONE direction.
 
 So, I hope you appreciate the effort and it's going to be helpful for you. This one is not a copy and paste but has actually been written by myself and tested and it works.
