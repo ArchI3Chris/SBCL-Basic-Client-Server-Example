@@ -46,4 +46,4 @@ Some additional problems I ran into were:
 
 - the few out there are either useless or don't work (properly)
 
-So, I hope you appreciate the effort.
+So, I hope you appreciate the effort and it's going to helpful for you.
