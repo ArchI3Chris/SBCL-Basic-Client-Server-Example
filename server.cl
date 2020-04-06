@@ -23,7 +23,7 @@
 
   ;; send answer to client
   (print "What up, client" *my-stream*)
-	(force-output *my-stream*))
+  (force-output *my-stream*))
 
 ;; call communication and close socket, no matter what
 (unwind-protect (communi)
