@@ -1,0 +1,35 @@
+This is one of the problems I ran into. Finding out how to actually install libraries. Because for some reason people don't seem to find it important to explain the basics first. Like for example how to save Lisp apps in files and load them before you actually create a game!
+
+Sorry... Let's go:
+
+To use usocket with SBCL, you might have to install it. And to install it, the easiest way is probably QuickLisp, which is like a package management system for Lisp.
+
+To install QuickLisp, download the quicklisp.lisp file:
+
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+
+Note: curl is just an example. It doesn't matter if you do it directly in your browser, use wget or whatever your favorite option is.
+
+Once that is done, fire up SBCL and load the file:
+
+sudo sbcl --load ./quicklisp.lisp
+
+You are going to see further instructions. Also in case you need help, you might want to visit quicklisp.org.
+
+Install QuickLisp:
+
+(quicklisp-quickstart:install)
+
+Make sure QuickLisp gets loaded with SBCL (by putting it in your .sbclrc):
+
+(ql:add-to-init-file)
+
+Now, I have to be honest here... since my .sbclrc file hasn't been loaded, I'm not sure if you need sudo for usocket or not. So, just give it a try. If it doesn't work anyway, just repeat this step as user.
+
+Next you need to install usocket:
+
+(ql:quickload "usocket")
+
+That should actually be it.
+
+On top of both files I load the user's config file. Ideally, this should be auto-loaded when you fire up SBCL. So, you won't need it if yours does. Mine does not. Note: adding the option to the hash-bang doesn't seem to work either. Maybe there is an option I don't know about, but I tried. Using load and script together doesn't work.
