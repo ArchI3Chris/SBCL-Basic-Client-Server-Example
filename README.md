@@ -48,4 +48,4 @@ Some additional problems I ran into were:
 
 - the few out there are either useless or don't work (properly), yet get copied and pasted on multiple pages and sites
 
-So, I hope you appreciate the effort and it's going to helpful for you. This one has not just been blindly copied but actually has been tested and works.
+So, I hope you appreciate the effort and it's going to be helpful for you. This one is not a copy and paste but has actually been written by myself and tested and it works.
