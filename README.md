@@ -26,7 +26,7 @@ And run the scripts directly:
 
 - ./client.cl
 
-They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate. To keep the connection open, you just skip closing the sockets. You could run both in the SBCL interpreter and keep sending messages back and forth.
+They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate.
 
 #### Notes
 
