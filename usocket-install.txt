@@ -12,7 +12,9 @@ Note: curl is just an example. It doesn't matter if you do it directly in your b
 
 Once that is done, fire up SBCL and load the file:
 
-sudo sbcl --load ./quicklisp.lisp
+sudo sbcl --load quicklisp.lisp
+
+Note: Due to the lack of proper documentation I'm not sure if sudo is actually necessary. If you are using only one user, it's probably not necessary. I'll get to that further down.
 
 You are going to see further instructions. Also in case you need help, you might want to visit quicklisp.org.
 
@@ -24,12 +26,20 @@ Make sure QuickLisp gets loaded with SBCL (by putting it in your .sbclrc):
 
 (ql:add-to-init-file)
 
-Now, I have to be honest here... since my .sbclrc file hasn't been loaded, I'm not sure if you need sudo for usocket or not. So, just give it a try. If it doesn't work anyway, just repeat this step as user.
+Note: this is going to put the entries in the root users .sbclrc. That's not going to work for the user you are using. To be honest, for the lack of proper documentation, I'm not sure if installing with sudo is necessary. But I do in the hope of implementing the library on a system level. The solution for this follows in a second.
 
-Next you need to install usocket:
+Last step you need to install usocket:
 
 (ql:quickload "usocket")
 
-That should actually be it.
+That's all there is and you can leave the interpreter with the usual (quit)
 
-On top of both files I load the user's config file. Ideally, this should be auto-loaded when you fire up SBCL. So, you won't need it if yours does. Mine does not. Note: adding the option to the hash-bang doesn't seem to work either. Maybe there is an option I don't know about, but I tried. Using load and script together doesn't work.
+Now, back to the sudo part.
+
+It might be enough to install for the user, but I prefer to install libraries on a system level, so all users can use it. Not sure if it does. But if you did use sudo first, you'll receive an error when you want to install it for the user. So... might work?
+
+Long story short: to make it work for the user, repeat the install steps but without sudo when you load the script. As mentioned, in case you used sudo first, like I did, you'll get an error when you try to install QuickLisp. I got two options, one of which is to load setup.lisp. In my case it was option zero. Do that. So, enter a zero and hit return. Then just continue with the next step (add-to-init-file).
+
+That's it.
+
+On top of both files I load the user's config file. Ideally, this should be auto-loaded when you fire up SBCL. So, you won't need it if yours does. Mine does not. Don't know any setting for this so far. Note: adding the option to the hash-bang doesn't seem to work either. Maybe there is an option I don't know about, but I tried that one. Using load and script together doesn't work.
