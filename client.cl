@@ -29,8 +29,5 @@
 
 ;; call communication and close socket, no matter what
 (unwind-protect (communi)
-  (progn
-    ;; close socket/client
-    (format t "~a~%" "Closing Connection...")
-    (usocket:socket-close *sock*)
-  ))
+  (format t "~a~%" "Closing Connection...")
+  (usocket:socket-close *sock*))
