@@ -28,9 +28,9 @@ And run the scripts directly:
 
 They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate. To keep the connection open, you just skip closing the sockets. You could run both in the SBCL interpreter and keep sending messages back and forth.
 
-### Notes
+#### Notes
 
-I did try the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Binding the socket for localhost doesn't seem to work for connections from the network. Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this quite slowly. So, in production you might want to counter for that with proper error-handling, acknowledgement, retries...
+I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Binding the socket for localhost doesn't seem to work for connections from the network. Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this quite slowly. So, in production you might want to counter for that with proper error-handling, acknowledgement, retries...
 
 ## Explanation
 
