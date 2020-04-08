@@ -28,6 +28,10 @@ And run the scripts directly:
 
 They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate. To keep the connection open, you just skip closing the sockets. You could run both in the SBCL interpreter and keep sending messages back and forth.
 
+### Notes
+
+I did try the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Binding the socket for localhost doesn't seem to work for connections from the network. Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this quite slowly. So, in production you might want to counter for that with proper error-handling, acknowledgement, retries...
+
 ## Explanation
 
 If you have the basics down, given the files include comments, this should be fairly easy to understand. Both bind to the socket address (consists of IP address for localhost and port number, in this case 4123). The server starts listening (socket-accept) for incoming requests, both open a stream for communication (socket-stream), then the clients sends the request, they exchange the data and then close the connection (socket-close). Unwind-protect makes sure the socket gets closed in case, no matter what (meaning even in case an error occurs).
