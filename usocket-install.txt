@@ -36,9 +36,9 @@ That's all there is and you can leave the interpreter with the usual (quit)
 
 Now, back to the sudo part.
 
-It might be enough to install for the user, but I prefer to install libraries on a system level, so all users can use it. Not sure if it does. But if you did use sudo first, you'll receive an error when you want to install it for the user. So... might work?
+It might be enough to install for the user, but I prefer to install libraries on a system level, so all users can use it. Not sure if it does. Personally, after using sudo first, I did get an error when I tried to install QuickLisp for the user again, but nonetheless usocket has been installed a second time for the user.
 
-Long story short: to make it work for the user, repeat the install steps but without sudo when you load the script. As mentioned, in case you used sudo first, like I did, you'll get an error when you try to install QuickLisp. I got two options, one of which is to load setup.lisp. In my case it was option zero. Do that. So, enter a zero and hit return. Then just continue with the next step (add-to-init-file).
+So, to make it work for the user, repeat the install steps but without sudo when you load the script. As mentioned, in case you used sudo first, like I did, you'll get an error when you try to install QuickLisp. I got two options, one of which is to load setup.lisp. In my case it was option zero. Do that. So, enter a zero and hit return. Then just continue with the next step (add-to-init-file).
 
 That's it.
 
