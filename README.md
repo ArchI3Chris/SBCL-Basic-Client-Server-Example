@@ -28,6 +28,8 @@ And run the scripts directly:
 
 They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate.
 
+To make the server listen permanently, instead of shutting it down every time upon request, just put everything except socket-listen in a loop.
+
 #### Notes
 
 I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Binding the socket for localhost doesn't seem to work for connections from the network (Currently I'm using two network connections on the Pi in question). Also, I didn't always get the connection right away and the client has threw a connection refused error a few times until it finally got through. It seems, the Raspberry processes this quite slowly. So, in production you might want to counter that with proper error-handling, acknowledgement, retries...
