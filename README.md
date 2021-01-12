@@ -32,7 +32,7 @@ To make the server listen permanently, instead of shutting it down every time up
 
 #### Notes
 
-I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Using local host in the socket didn't seem to work for me for connections from the network (currently using two network connections on the Pi that ran the server script). Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this a bit slowly. So, in production you might want to counter that with proper error-handling, acknowledgement, retries...
+I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Using localhost in the socket didn't seem to work for me for connections from the network (currently using two network connections on the Pi that ran the server script). Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this a bit slowly. So, in production you might want to counter that with proper error-handling, acknowledgement, retries...
 
 ## Explanation
 
@@ -40,9 +40,9 @@ If you have the basics down, given the files include comments, this should be fa
 
 ## Why?
 
-Because it's sad how poor the information out there is. Despite books and the Internet and people who seem to have been using this stuff for years, it took me HOURS to figure out how it works. BASIC STUFF! It's sad how much time we waste for nothing, due to all the poor information and documentation out there.
+Because it's sad how poor the information out there is. Despite books and the Internet and people who seem to have been using this stuff for years, it took me HOURS to figure out how it works. BASIC STUFF! It's sad how much time we waste for nothing, due to all the poor information and documentation out there. Lisp is a great language, but the poor documentation out there sadly is a good reason not to use it or drop it after a while. Lisp needs way more proper documentation.
 
-The best thing I had, was a CLISP example. That's nice and simple and it actually works. The problem is, that the performance of CLISP is horrible compared to SBCL. So, CLISP might be nice for learning, but in actual practical use, not so much. Some examples I ran, were at least 8-9 times slower with CLISP than SBCL and up to like 20 times slower! And that's important for my purpose. But worse is, that the CLISP example doesn't work with SBCL.
+The best thing I had, was a CLISP example. That's nice and simple and it actually works. The problem is, while the error reporting is way clearer than that of SBCL, it's also unreliable and even worse, the performance of CLISP is horrible compared to SBCL. So, CLISP might be nice for learning, but in actual practical use, not so much. Some examples I ran, were at least 8-9 times slower with CLISP than SBCL and up to like 20 times slower! And that's important for my purpose. But what makes this even worse is, that the CLISP example doesn't work with SBCL.
 
 Some additional problems I ran into were: 
 
@@ -52,6 +52,6 @@ Some additional problems I ran into were:
 
 - barely any examples or simple explanation out there
 
-- the few out there are either useless or don't work (properly), yet get copied and pasted on multiple pages and sites. I ran into TWO examples. One of which only downloaded a website and even that with an error. The second was poorly written, had no error handling AND has sent only PART of the data in ONE direction.
+- the few out there are either useless or don't work (properly), yet get copied and pasted onto multiple pages and sites. I ran into TWO examples. One of which only downloaded a website and even that with an error. The second was poorly written, had no error handling for the socket AND has sent only PART of the data in only ONE direction.
 
 So, I hope you appreciate the effort and it's going to be helpful for you. This one is not a copy and paste but has actually been written by myself and tested and it works.
