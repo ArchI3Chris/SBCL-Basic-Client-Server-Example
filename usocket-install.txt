@@ -2,7 +2,7 @@ This is one of the problems I ran into. Finding out how to actually install libr
 
 Sorry... Let's go:
 
-To use usocket with SBCL, you might have to install it. And to install it, the easiest way is probably QuickLisp, which is like a package management system for Lisp.
+To use usocket with SBCL, you are likely going to have to install it. And to install it, the easiest way is probably QuickLisp, which is like a package management system for Lisp.
 
 To install QuickLisp, download the quicklisp.lisp file:
 
@@ -10,11 +10,9 @@ curl -O https://beta.quicklisp.org/quicklisp.lisp
 
 Note: curl is just an example. It doesn't matter if you do it directly in your browser, use wget or whatever your favorite option is.
 
-Once that is done, fire up SBCL and load the file:
+Once that is done, fire up SBCL and load the file (make sure you are in the correct directory!):
 
-sudo sbcl --load quicklisp.lisp
-
-Note: Due to the lack of proper documentation I'm not sure if sudo is actually necessary. If you are using only one user, it's probably not necessary. I'll get to that further down.
+sbcl --load quicklisp.lisp
 
 You are going to see further instructions. Also in case you need help, you might want to visit quicklisp.org.
 
@@ -22,24 +20,24 @@ Install QuickLisp:
 
 (quicklisp-quickstart:install)
 
-Make sure QuickLisp gets loaded with SBCL (by putting it in your .sbclrc):
+Meanwhile I've found out, that QuickLisp seems to install in my user directory.
+
+Now, the idea would be, to make sure QuickLisp gets loaded autoamtically with SBCL by doing this next:
 
 (ql:add-to-init-file)
 
-Note: this is going to put the entries in the root users .sbclrc. That's not going to work for the user you are using. To be honest, for the lack of proper documentation, I'm not sure if installing with sudo is necessary. But I do in the hope of implementing the library on a system level. The solution for this follows in a second.
+While this one would add QuickLisp to .sbclrc, .sbclrc does NOT get loaded by SBCL automatically. In the scripts you can see, that I load the file manually.
 
-Last step you need to install usocket:
+Meaningwhile I've switched to actually taking over the QuickLisp folder to the project folder and loading the setup file directly. Which is what is usually done by the entry in the .sbclrc file. Therefore I also just copy the basic QuickLisp folder to new projects.
+
+Note: in the projects, files for the modules are obviously going to be added. So, you might want to keep a basic template for QuickLisp alone to avoid bloat and unnecessary files. If you actually want the modules of a project to be taken over to another, you can of course take them over from other projects too.
+
+Last step, you need to install usocket:
 
 (ql:quickload "usocket")
 
-That's all there is and you can leave the interpreter with the usual (quit)
+That's all there is and you can leave the interpreter with the usual
 
-Now, back to the sudo part.
-
-It might be enough to install for the user, but I prefer to install libraries on a system level, so all users can use it. Not sure if it does. Personally, after using sudo first, I did get an error when I tried to install QuickLisp for the user again, but nonetheless usocket has been installed a second time for the user.
-
-So, to make it work for the user, repeat the install steps but without sudo when you load the script. As mentioned, in case you used sudo first, like I did, you'll get an error when you try to install QuickLisp. I got two options, one of which is to load setup.lisp. In my case it was option zero. Do that. So, enter a zero and hit return. Then just continue with the next step (add-to-init-file).
+(quit)
 
 That's it.
-
-On top of both files I load the user's config file. Ideally, this should be auto-loaded when you fire up SBCL. So, you won't need it if yours does. Mine does not. Don't know any setting for this so far. Note: adding the option to the hash-bang doesn't seem to work either. Maybe there is an option I don't know about, but I tried that one. Using load and script together doesn't work.
