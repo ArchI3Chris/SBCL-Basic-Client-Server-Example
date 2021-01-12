@@ -2,17 +2,17 @@
 
 ## What
 
-This is a basic client server example for Common Lisp. A basic example for using sockets. It's specifically for SBCL and uses usocket.
+This is a basic client server example and on using sockets with Common Lisp. It's specifically for SBCL and uses usocket.
 
 This is not meant to be a full practical example but only a basic example of how you get the communication going. Handling data, like for example storing it into an array, is a story for another day.
 
 ## Requirements
 
-The scripts of course need SBCL (Steel Bank Common Lisp interpreter) and usocket. Regarding SBCL use the install manual for your operating system. You can use the scripts on Windows, on Linux, on Raspberries... In case you need to install usocket, QuickLisp is probably the best and easiest way to do it. The manual is in the attached file.
+The scripts of course need SBCL (Steel Bank Common Lisp interpreter) and usocket. Regarding SBCL use the install manual for your operating system. You can use the scripts on Windows, on Linux, on Raspberries... In case you need to install usocket, QuickLisp is probably the best and easiest way to do it. The manual is in the usocket-install.txt file.
 
 ## Usage
 
-Basically you just open two terminal windows (or tabs) and start the server first, then the client second.
+Basically you just open two terminal windows (or tabs) and start the server first, then (after giving it a bit of time) the client second.
 
 On Linux you can just give it execution permission:
 
@@ -28,15 +28,15 @@ And run the scripts directly:
 
 They communicate, the server prints the data the client sends and the client prints the message the server sends, then both terminate.
 
-To make the server listen permanently, instead of shutting it down every time upon request, just put everything except socket-listen in a loop.
+To make the server listen permanently, instead of shutting it down every time upon request, in the server script in the communi function just put everything except socket-listen in a loop.
 
 #### Notes
 
-I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Binding the socket for localhost doesn't seem to work for connections from the network (Currently I'm using two network connections on the Pi in question). Also, I didn't always get the connection right away and the client has threw a connection refused error a few times until it finally got through. It seems, the Raspberry processes this quite slowly. So, in production you might want to counter that with proper error-handling, acknowledgement, retries...
+I did test the scripts between my notebook and a Raspberry Pi and it did work. However, know that you have to use the actual network address for the socket. Using local host in the socket didn't seem to work for me for connections from the network (currently using two network connections on the Pi that ran the server script). Also, I didn't always get the connection right away and the client has thrown a connection refused error a few times until it finally got through. It seems, the Raspberry processes this a bit slowly. So, in production you might want to counter that with proper error-handling, acknowledgement, retries...
 
 ## Explanation
 
-If you have the basics down, given the files include comments, this should be fairly easy to understand. Both bind to the socket address (consists of IP address for localhost and port number, in this case 4123). The server starts listening (socket-accept) for incoming requests, both open a stream for communication (socket-stream), then the clients sends the request, they exchange the data and then close the connection (socket-close). Unwind-protect makes sure the socket gets closed in case, no matter what (meaning even in case an error occurs).
+If you have the basics down, given the files include comments, this should be fairly easy to understand. Both bind to the socket address (consists of IP address for localhost and port number, in this case 4123). The server starts listening (socket-accept) for incoming requests, both open a stream for communication (socket-stream), then the clients sends the request, they exchange the data and then close the connection (socket-close). Unwind-protect makes sure the socket gets closed, no matter what. Not closing it could lock the socket and make it unusable, worst case until reboot.
 
 ## Why?
 
